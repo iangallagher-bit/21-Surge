@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21 SURGE — 888 Casino</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold-bright: #FFEC6E;
+    --orange: #FF6B00;
+    --red: #E8002D;
+    --green: #00C853;
+    --bg-deep: #0A0A0F;
+    --bg-table: #0F2318;
+    --bg-card: #1A1A2E;
+    --felt: #0D3B1E;
+    --felt-light: #145228;
+    --text: #F5F0E8;
+    --text-dim: #8A8070;
+    --eight88-red: #E8002D;
+    --eight88-green: #4CAF50;
+    --eight88-gold: #FFD700;
+    --surge-blue: #00D4FF;
+    --surge-purple: #9B59FF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    font-family: 'Barlow', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(255,215,0,0.12);
+    position: relative;
+    z-index: 50;
+  }
+
+  /* 888 SVG Logo */
+  .logo-888-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-888-svg {
+    height: 44px;
+    width: auto;
+  }
+
+  .logo-casino-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .game-title-wrap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .game-title-wrap h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 6px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .game-title-wrap .subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3.5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .player-stats {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .stat-chip {
+    background: rgba(255,215,0,0.07);
+    border: 1px solid rgba(255,215,0,0.18);
+    border-radius: 20px;
+    padding: 5px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stat-chip .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .stat-chip .value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  /* ─── SOCIAL TICKER ─── */
+  .social-ticker {
+    background: rgba(0,0,0,0.45);
+    border-bottom: 1px solid rgba(255,107,0,0.15);
+    padding: 7px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .social-ticker::before, .social-ticker::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; width: 80px;
+    z-index: 2;
+  }
+  .social-ticker::before { left:0; background: linear-gradient(90deg, var(--bg-deep), transparent); }
+  .social-ticker::after  { right:0; background: linear-gradient(-90deg, var(--bg-deep), transparent); }
+
+  .ticker-inner {
+    display: flex;
+    gap: 60px;
+    animation: ticker 32s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    color: var(--text-dim);
+  }
+  .ticker-item .highlight { color: var(--gold); font-weight: 600; }
+
+  /* ─── LAYOUT ─── */
+  .game-wrapper {
+    display: flex;
+    gap: 18px;
+    padding: 18px 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    width: 196px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .streak-card {
+    background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(255,215,0,0.04));
+    border: 1px solid rgba(255,107,0,0.28);
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .streak-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+
+  .streak-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--orange), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .streak-label { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+
+  .multiplier-display {
+    margin-top: 8px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 7px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .multiplier-display .mult-label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:2px; color:var(--text-dim); }
+  .multiplier-display .mult-value { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--gold-bright); }
+
+  .xp-bar-wrap {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  .xp-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .xp-bar-label span { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; }
+  .xp-bar-label .level { font-family:'Bebas Neue',sans-serif; font-size:15px; color:var(--gold); }
+
+  .xp-track { height:7px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden; }
+  .xp-fill { height:100%; background:linear-gradient(90deg,var(--orange),var(--gold)); border-radius:4px; transition:width 0.6s cubic-bezier(0.34,1.56,0.64,1); width:0%; }
+
+  .achievement-list { display:flex; flex-direction:column; gap:7px; }
+
+  .achievement {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 9px;
+    padding: 9px 11px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: all 0.3s;
+  }
+
+  .achievement.unlocked { background:rgba(0,200,83,0.07); border-color:rgba(0,200,83,0.28); }
+
+  .achievement .ach-icon { font-size:18px; width:28px; text-align:center; filter:grayscale(1) opacity(0.35); transition:filter 0.3s; }
+  .achievement.unlocked .ach-icon { filter:none; }
+
+  .achievement .ach-text h4 { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.5px; color:var(--text-dim); }
+  .achievement.unlocked .ach-text h4 { color:var(--text); }
+  .achievement .ach-text p { font-size:9px; color:var(--text-dim); margin-top:1px; }
+
+  /* ─── TABLE AREA ─── */
+  .table-area { flex:1; display:flex; flex-direction:column; gap:14px; }
+
+  /* In-game coach banner */
+  #coach-banner {
+    background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(155,89,255,0.06));
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 46px;
+    transition: all 0.4s;
+  }
+
+  #coach-banner .coach-icon { font-size: 22px; flex-shrink:0; }
+
+  #coach-banner .coach-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: rgba(200,240,255,0.9);
+    line-height: 1.3;
+  }
+
+  #coach-banner .coach-text strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .felt-table {
+    background: radial-gradient(ellipse at center, var(--felt-light) 0%, var(--felt) 60%, #0A1F10 100%);
+    border-radius: 20px;
+    border: 3px solid rgba(255,215,0,0.18);
+    box-shadow: 0 0 60px rgba(0,150,50,0.12), inset 0 0 80px rgba(0,0,0,0.35);
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .felt-table::before {
+    content:'';
+    position:absolute;
+    top:-50%;left:-50%;
+    width:200%;height:200%;
+    background:radial-gradient(circle at 50% 30%, rgba(255,215,0,0.025) 0%, transparent 60%);
+    pointer-events:none;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: rgba(255,215,0,0.35);
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  /* ─── HANDS ─── */
+  .hands-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    min-height: 110px;
+    align-items: flex-start;
+  }
+
+  .hand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+  }
+
+  .hand-container.active-hand::before {
+    content: '▼ ACTIVE';
+    position: absolute;
+    top: -20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-align: center;
+    width: 100%;
+  }
+
+  .hand {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 100px;
+  }
+
+  .card {
+    width: 68px;
+    height: 98px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.5);
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: dealCard 0.3s ease-out;
+  }
+
+  @keyframes dealCard {
+    from { transform:translateY(-28px) scale(0.8) rotate(-5deg); opacity:0; }
+    to   { transform:translateY(0)     scale(1)   rotate(0deg);  opacity:1; }
+  }
+
+  .card.red   { color: var(--eight88-red); }
+  .card.black { color: #1a1a1a; }
+
+  .card.face-down {
+    background: linear-gradient(145deg, #1a1a6e 0%, #2d0a4e 50%, #1a1a6e 100%);
+    overflow: hidden;
+  }
+
+  /* 888 logo pattern on card back */
+  .card.face-down::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 50% 50%, rgba(76,175,80,0.15) 0%, transparent 60%);
+  }
+
+  .card-back-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card .rank-top, .card .rank-bottom {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .card .rank-bottom { align-self: flex-end; transform: rotate(180deg); }
+
+  .card .suit-center {
+    font-size: 26px;
+    text-align: center;
+    line-height: 1;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .score-badge { text-align:center; margin: 4px 0; height: 22px; }
+
+  .score-badge span {
+    display: inline-block;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,215,0,0.28);
+    border-radius: 20px;
+    padding: 1px 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+
+  .score-badge span.bust { color:var(--red); border-color:rgba(232,0,45,0.28); }
+  .score-badge span.blackjack {
+    color:var(--gold-bright);
+    border-color:var(--gold);
+    animation:pulse-gold 0.5s ease-in-out 3;
+    background:rgba(255,215,0,0.08);
+  }
+
+  /* Split label */
+  .split-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--surge-blue);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  @keyframes pulse-gold {
+    0%,100%{box-shadow:0 0 0 0 rgba(255,215,0,0.4);}
+    50%{box-shadow:0 0 0 8px rgba(255,215,0,0);}
+  }
+
+  .table-divider {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,0.18), transparent);
+    margin: 14px auto;
+  }
+
+  /* ─── BET AREA ─── */
+  .bet-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .chip {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    border: 3px dashed rgba(255,255,255,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  .chip:hover { transform:translateY(-3px) scale(1.08); }
+  .chip:active { transform:scale(0.95); }
+  .chip.c5   { background:radial-gradient(circle,#e74c3c,#c0392b); }
+  .chip.c10  { background:radial-gradient(circle,#2980b9,#1a5276); }
+  .chip.c25  { background:radial-gradient(circle,#27ae60,#1e8449); }
+  .chip.c50  { background:radial-gradient(circle,#8e44ad,#6c3483); }
+  .chip.c100 { background:radial-gradient(circle,#d4ac0d,#b7950b); }
+
+  .current-bet-display {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,215,0,0.28);
+    border-radius: 8px;
+    padding: 7px 18px;
+    text-align: center;
+    min-width: 76px;
+  }
+  .current-bet-display .bet-lbl { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:2px; color:var(--text-dim); }
+  .current-bet-display .bet-amount { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--gold); line-height:1; }
+
+  /* ─── ACTION BUTTONS ─── */
+  .action-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,0.14) 0%,transparent 60%);
+  }
+
+  .btn:hover { transform:translateY(-2px); filter:brightness(1.1); }
+  .btn:active { transform:scale(0.97); }
+  .btn:disabled { opacity:0.3; cursor:not-allowed; transform:none; filter:none; }
+
+  .btn-deal   { background:linear-gradient(135deg,var(--gold),#e6a500); color:#0A0A0F; }
+  .btn-rebet  { background:linear-gradient(135deg,#2980b9,#1a5276); color:white; }
+  .btn-hit    { background:linear-gradient(135deg,#27ae60,#1e8449); color:white; }
+  .btn-stand  { background:linear-gradient(135deg,#e74c3c,#c0392b); color:white; }
+  .btn-double { background:linear-gradient(135deg,#8e44ad,#6c3483); color:white; }
+  .btn-split  { background:linear-gradient(135deg,#00b4d8,#0077b6); color:white; }
+  .btn-clear  { background:rgba(255,255,255,0.07); color:var(--text-dim); border:1px solid rgba(255,255,255,0.09); }
+
+  /* ─── RESULT OVERLAY ─── */
+  .result-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.86);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s;
+    gap: 4px;
+  }
+
+  .result-overlay.show { opacity:1; pointer-events:all; }
+
+  .result-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    letter-spacing: 8px;
+    line-height: 1;
+  }
+
+  .result-title.win  { color:var(--gold); text-shadow:0 0 30px rgba(255,215,0,0.5); }
+  .result-title.lose { color:var(--red);  text-shadow:0 0 30px rgba(232,0,45,0.5);  }
+  .result-title.push { color:#aaa; }
+  .result-title.surge {
+    background:linear-gradient(135deg,var(--surge-blue),var(--surge-purple),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation:surge-pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes surge-pulse {
+    0%,100%{filter:brightness(1);}
+    50%{filter:brightness(1.3);}
+  }
+
+  .result-amount { font-family:'Barlow Condensed',sans-serif; font-size:22px; letter-spacing:3px; color:var(--text-dim); }
+  .result-amount.green { color:var(--green); }
+  .result-amount.red   { color:var(--red);   }
+
+  /* Result coach message */
+  .result-coach {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(200,240,255,0.7);
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.4;
+    margin: 4px 0;
+  }
+
+  .result-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .btn-next {
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: #0A0A0F;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 11px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  .btn-next:hover { transform:scale(1.05); }
+
+  .btn-rebet-result {
+    background: linear-gradient(135deg, #2980b9, #1a5276);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 11px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .btn-rebet-result:hover { transform:scale(1.05); }
+
+  /* ─── TOASTS ─── */
+  .toast-container {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 9px;
+    z-index: 500;
+    pointer-events: none;
+  }
+
+  .toast {
+    background: rgba(12,12,24,0.96);
+    border: 1px solid rgba(255,215,0,0.28);
+    border-radius: 14px;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 270px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    animation: toast-in 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  }
+
+  @keyframes toast-in  { from{transform:translateY(36px) scale(0.8);opacity:0;} to{transform:translateY(0) scale(1);opacity:1;} }
+  @keyframes toast-out { from{transform:translateY(0) scale(1);opacity:1;} to{transform:translateY(-18px) scale(0.9);opacity:0;} }
+
+  .toast-icon { font-size:26px; }
+  .toast-content h4 { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:1px; color:var(--text); }
+  .toast-content p  { font-size:11px; color:var(--text-dim); margin-top:2px; }
+  .toast.streak { border-color:var(--orange); }
+  .toast.achieve { border-color:var(--green); }
+  .toast.surge-win { border-color:var(--surge-blue); }
+  .toast.tip { border-color:rgba(0,212,255,0.4); }
+
+  /* ─── SURGE GAME ─── */
+  #surge-game {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: radial-gradient(ellipse at center, #0D0020 0%, #000010 100%);
+    overflow: hidden;
+  }
+
+  #surge-game.active { display:flex; flex-direction:column; }
+
+  .surge-particles { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+
+  .particle {
+    position:absolute;
+    border-radius:50%;
+    animation:float-particle linear infinite;
+    opacity:0;
+  }
+
+  @keyframes float-particle {
+    0%  {transform:translateY(100vh) scale(0); opacity:0;}
+    10% {opacity:0.6;}
+    90% {opacity:0.3;}
+    100%{transform:translateY(-20vh) scale(1.5); opacity:0;}
+  }
+
+  .surge-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 36px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .surge-logo-wrap { display:flex; flex-direction:column; }
+
+  .surge-888-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .surge-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    letter-spacing: 8px;
+    background: linear-gradient(135deg, var(--surge-blue) 0%, var(--surge-purple) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .surge-subtext {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(0,212,255,0.45);
+    text-transform: uppercase;
+    margin-top: -4px;
+  }
+
+  .surge-stats { display:flex; gap:22px; }
+
+  .surge-stat { text-align:center; }
+  .surge-stat .s-val { font-family:'Bebas Neue',sans-serif; font-size:34px; line-height:1; }
+  .surge-stat.multiplier .s-val { background:linear-gradient(135deg,var(--gold),var(--orange)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .surge-stat.streak   .s-val { color:var(--surge-blue); }
+  .surge-stat.winnings .s-val { color:var(--green); }
+  .surge-stat .s-lbl { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:3px; color:rgba(255,255,255,0.28); text-transform:uppercase; }
+
+  /* surge coach */
+  #surge-coach {
+    margin: 0 36px 10px;
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.16);
+    border-radius: 10px;
+    padding: 9px 16px;
+    position: relative;
+    z-index: 10;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: rgba(180,230,255,0.85);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.4s;
+  }
+
+  .surge-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 0 36px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .progress-ladder { display:flex; flex-direction:column-reverse; gap:7px; width:150px; flex-shrink:0; }
+
+  .ladder-rung {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 7px 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+  }
+
+  .ladder-rung.current   { background:rgba(0,212,255,0.09); border-color:var(--surge-blue); box-shadow:0 0 18px rgba(0,212,255,0.18); }
+  .ladder-rung.completed { background:rgba(0,200,83,0.07); border-color:rgba(0,200,83,0.28); }
+
+  .ladder-rung .rung-level { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:2px; color:rgba(255,255,255,0.28); text-transform:uppercase; }
+  .ladder-rung.current   .rung-level { color:var(--surge-blue); }
+  .ladder-rung.completed .rung-level { color:var(--green); }
+
+  .ladder-rung .rung-mult { font-family:'Bebas Neue',sans-serif; font-size:17px; color:rgba(255,255,255,0.35); }
+  .ladder-rung.current   .rung-mult { color:var(--gold); }
+  .ladder-rung.completed .rung-mult { color:var(--green); }
+
+  .card-arena { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; }
+
+  .arena-label { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:4px; color:rgba(255,255,255,0.28); text-transform:uppercase; }
+
+  .arena-card-wrap { position:relative; }
+
+  .arena-card {
+    width: 115px;
+    height: 162px;
+    background: white;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 11px;
+    box-shadow: 0 0 55px rgba(0,212,255,0.18), 0 18px 36px rgba(0,0,0,0.55);
+    position: relative;
+  }
+
+  .arena-card.red { color:var(--eight88-red); }
+  .arena-card.black { color:#111; }
+  .arena-card.face-down {
+    background: linear-gradient(135deg, #0D0040, #1a0060);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .arena-card .a-rank-top, .arena-card .a-rank-bottom {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .arena-card .a-rank-bottom { align-self:flex-end; transform:rotate(180deg); }
+  .arena-card .a-suit { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:44px; line-height:1; }
+
+  .card-glow { position:absolute; inset:-8px; border-radius:20px; opacity:0; transition:opacity 0.3s; pointer-events:none; }
+  .card-glow.correct { background:radial-gradient(ellipse,rgba(0,200,83,0.3),transparent 70%); opacity:1; }
+  .card-glow.wrong   { background:radial-gradient(ellipse,rgba(232,0,45,0.3),transparent 70%); opacity:1; }
+
+  .choice-area { display:flex; gap:18px; align-items:center; }
+
+  .btn-higher {
+    background: linear-gradient(135deg,#27ae60,#1e8449); color:white;
+    font-family:'Bebas Neue',sans-serif; font-size:19px; letter-spacing:3px;
+    padding:13px 28px; border:none; border-radius:10px; cursor:pointer;
+    transition:all 0.15s; box-shadow:0 0 20px rgba(39,174,96,0.28);
+  }
+
+  .btn-lower {
+    background:linear-gradient(135deg,#e74c3c,#c0392b); color:white;
+    font-family:'Bebas Neue',sans-serif; font-size:19px; letter-spacing:3px;
+    padding:13px 28px; border:none; border-radius:10px; cursor:pointer;
+    transition:all 0.15s; box-shadow:0 0 20px rgba(231,76,60,0.28);
+  }
+
+  .btn-cashout {
+    background:linear-gradient(135deg,var(--gold),var(--orange)); color:#0A0A0F;
+    font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px;
+    padding:11px 22px; border:none; border-radius:10px; cursor:pointer;
+    transition:all 0.15s; box-shadow:0 0 18px rgba(255,215,0,0.18);
+    text-align:center;
+  }
+
+  .btn-higher:hover,.btn-lower:hover,.btn-cashout:hover { transform:scale(1.06); filter:brightness(1.1); }
+  .btn-higher:active,.btn-lower:active,.btn-cashout:active { transform:scale(0.97); }
+  .btn-higher:disabled,.btn-lower:disabled,.btn-cashout:disabled { opacity:0.3; cursor:not-allowed; transform:none; }
+
+  .streak-gems { display:flex; gap:7px; justify-content:center; }
+
+  .gem {
+    width:26px; height:26px; border-radius:50%;
+    background:rgba(255,255,255,0.07);
+    border:2px solid rgba(255,255,255,0.09);
+    transition:all 0.3s;
+  }
+
+  .gem.lit {
+    background:radial-gradient(circle,var(--surge-blue),var(--surge-purple));
+    border-color:var(--surge-blue);
+    box-shadow:0 0 10px var(--surge-blue);
+    animation:gem-pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes gem-pulse {
+    0%,100%{box-shadow:0 0 8px var(--surge-blue);}
+    50%{box-shadow:0 0 20px var(--surge-blue),0 0 38px rgba(0,212,255,0.28);}
+  }
+
+  .payout-row {
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:7px;
+    padding:5px 9px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition: all 0.3s;
+  }
+  .payout-row .pr-label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:1px; color:rgba(255,255,255,0.28); }
+  .payout-row .pr-mult  { font-family:'Bebas Neue',sans-serif; font-size:15px; color:rgba(255,255,255,0.35); }
+
+  .payout-row.current { border-color:var(--surge-blue); }
+  .payout-row.current .pr-label { color:var(--surge-blue); }
+  .payout-row.current .pr-mult  { color:var(--gold); }
+  .payout-row.done { border-color:rgba(0,200,83,0.28); }
+  .payout-row.done .pr-label,.payout-row.done .pr-mult { color:var(--green); }
+
+  .surge-result-overlay {
+    position:absolute; inset:0;
+    background:rgba(0,0,0,0.92);
+    display:none; flex-direction:column;
+    align-items:center; justify-content:center;
+    z-index:50;
+  }
+  .surge-result-overlay.show { display:flex; }
+
+  .surge-result-title { font-family:'Bebas Neue',sans-serif; font-size:76px; letter-spacing:10px; line-height:1; }
+  .surge-result-title.win-title {
+    background:linear-gradient(135deg,var(--surge-blue),var(--gold));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    animation:surge-pulse 0.8s ease-in-out infinite;
+  }
+  .surge-result-title.bust-title {
+    background:linear-gradient(135deg,var(--red),#ff6b6b);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+
+  .surge-result-win    { font-family:'Barlow Condensed',sans-serif; font-size:26px; letter-spacing:4px; color:var(--green); margin-top:10px; }
+  .surge-result-detail { font-size:13px; color:var(--text-dim); margin-top:6px; letter-spacing:2px; }
+  .surge-result-coach  { font-family:'Barlow Condensed',sans-serif; font-size:14px; color:rgba(180,230,255,0.7); margin-top:10px; text-align:center; max-width:320px; line-height:1.4; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-888-wrap">
+    <!-- 888 Casino official logo as inline SVG (faithful recreation of the green 888casino mark) -->
+    <svg class="logo-888-svg" viewBox="0 0 180 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background pill -->
+      <rect width="180" height="72" rx="10" fill="#1B1B1B"/>
+      <!-- Three 8s in brand green -->
+      <text x="12" y="52" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="48" fill="#4CAF50" letter-spacing="-2">888</text>
+      <!-- "casino" wordmark beneath -->
+      <text x="13" y="67" font-family="Arial,sans-serif" font-size="13" fill="#FFFFFF" letter-spacing="3">casino</text>
+      <!-- Registered trademark -->
+      <text x="158" y="20" font-family="Arial,sans-serif" font-size="11" fill="#4CAF50">®</text>
+    </svg>
+  </div>
+
+  <div class="game-title-wrap">
+    <h1>21 SURGE</h1>
+    <div class="subtitle">Hit 21 · Unlock the Surge · Chase the Multiplier</div>
+  </div>
+
+  <div class="player-stats">
+    <div class="stat-chip">
+      <div class="label">Balance</div>
+      <div class="value" id="balance-display">£1,000</div>
+    </div>
+    <div class="stat-chip" style="border-color:rgba(255,107,0,0.28);">
+      <div class="label" style="color:var(--orange);">Total Won</div>
+      <div class="value" id="total-won" style="color:var(--orange);">£0</div>
+    </div>
+  </div>
+</header>
+
+<!-- SOCIAL TICKER -->
+<div class="social-ticker">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="game-wrapper">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="streak-card">
+      <h3>🔥 Win Streak</h3>
+      <div class="streak-number" id="win-streak">0</div>
+      <div class="streak-label">Consecutive Wins</div>
+      <div class="multiplier-display">
+        <div class="mult-label">Bonus Mult</div>
+        <div class="mult-value" id="streak-mult">×1</div>
+      </div>
+    </div>
+
+    <div class="xp-bar-wrap">
+      <div class="xp-bar-label">
+        <span>Player XP</span>
+        <span class="level" id="xp-level">Lv 1</span>
+      </div>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+    </div>
+
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;">Achievements</div>
+    <div class="achievement-list">
+      <div class="achievement" id="ach-first">
+        <div class="ach-icon">🃏</div>
+        <div class="ach-text"><h4>First Hand</h4><p>Play your first hand</p></div>
+      </div>
+      <div class="achievement" id="ach-surge">
+        <div class="ach-icon">⚡</div>
+        <div class="ach-text"><h4>Surge Activated</h4><p>Hit your first 21</p></div>
+      </div>
+      <div class="achievement" id="ach-streak3">
+        <div class="ach-icon">🔥</div>
+        <div class="ach-text"><h4>On Fire</h4><p>Win 3 in a row</p></div>
+      </div>
+      <div class="achievement" id="ach-split">
+        <div class="ach-icon">🔀</div>
+        <div class="ach-text"><h4>Split Decision</h4><p>Win a split hand</p></div>
+      </div>
+      <div class="achievement" id="ach-surge5">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-text"><h4>Surge Master</h4><p>Reach level 5 in Surge</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE AREA -->
+  <div class="table-area">
+
+    <!-- COACH BANNER -->
+    <div id="coach-banner">
+      <span class="coach-icon">🎓</span>
+      <span class="coach-text" id="coach-text">Welcome to <strong>21 Surge</strong> by 888 Casino. Place your bet to start — hit Blackjack to unlock the Surge bonus game!</span>
+    </div>
+
+    <!-- FELT TABLE -->
+    <div class="felt-table" id="blackjack-table">
+      <!-- DEALER -->
+      <div class="section-label">Dealer</div>
+      <div style="display:flex;justify-content:center;">
+        <div class="hand" id="dealer-hand"></div>
+      </div>
+      <div class="score-badge"><span id="dealer-score"></span></div>
+
+      <div class="table-divider"></div>
+
+      <!-- PLAYER HAND(S) -->
+      <div class="score-badge"><span id="player-score"></span></div>
+      <div class="hands-row" id="hands-row">
+        <div class="hand-container" id="hand-container-0">
+          <div class="hand" id="player-hand-0"></div>
+          <div class="score-badge"><span id="split-score-0"></span></div>
+        </div>
+      </div>
+      <div class="section-label" style="margin-top:10px;">Your Hand</div>
+
+      <!-- BET -->
+      <div style="margin-top:14px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;text-align:center;margin-bottom:9px;">Select Chips to Bet</div>
+        <div class="bet-area">
+          <div class="chip c5"   onclick="addBet(5)">£5</div>
+          <div class="chip c10"  onclick="addBet(10)">£10</div>
+          <div class="chip c25"  onclick="addBet(25)">£25</div>
+          <div class="current-bet-display">
+            <div class="bet-lbl">Current Bet</div>
+            <div class="bet-amount" id="bet-display">£0</div>
+          </div>
+          <div class="chip c50"  onclick="addBet(50)">£50</div>
+          <div class="chip c100" onclick="addBet(100)">£100</div>
+        </div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="action-row">
+        <button class="btn btn-clear"  id="btn-clear"  onclick="clearBet()">Clear</button>
+        <button class="btn btn-rebet"  id="btn-rebet"  onclick="reBet()" disabled>↺ Rebet</button>
+        <button class="btn btn-deal"   id="btn-deal"   onclick="dealHand()">Deal</button>
+        <button class="btn btn-hit"    id="btn-hit"    onclick="playerHit()"    disabled>Hit</button>
+        <button class="btn btn-stand"  id="btn-stand"  onclick="playerStand()"  disabled>Stand</button>
+        <button class="btn btn-double" id="btn-double" onclick="playerDouble()" disabled>Double</button>
+        <button class="btn btn-split"  id="btn-split"  onclick="playerSplit()"  disabled>Split</button>
+      </div>
+
+      <!-- RESULT OVERLAY -->
+      <div class="result-overlay" id="result-overlay">
+        <div class="result-title" id="result-title">—</div>
+        <div class="result-amount" id="result-amount"></div>
+        <div class="result-coach" id="result-coach"></div>
+        <div class="result-buttons">
+          <button class="btn-rebet-result" id="btn-rebet-result" onclick="reBetAndDeal()">↺ Rebet & Deal</button>
+          <button class="btn-next" id="btn-next" onclick="nextHand()">New Hand ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ═══════════════════════ SURGE GAME ═══════════════════════ -->
+<div id="surge-game">
+  <div class="surge-particles" id="surge-particles"></div>
+
+  <div class="surge-header">
+    <div class="surge-logo-wrap">
+      <div class="surge-888-row">
+        <!-- Mini 888 logo in surge -->
+        <svg viewBox="0 0 80 32" width="70" height="31" xmlns="http://www.w3.org/2000/svg">
+          <rect width="80" height="32" rx="5" fill="#1B1B1B"/>
+          <text x="5" y="24" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="22" fill="#4CAF50" letter-spacing="-1">888</text>
+          <text x="72" y="9" font-family="Arial,sans-serif" font-size="7" fill="#4CAF50">®</text>
+        </svg>
+        <div class="surge-logo">SURGE</div>
+      </div>
+      <div class="surge-subtext">Bonus Round · Skill Game</div>
+    </div>
+    <div class="surge-stats">
+      <div class="surge-stat streak">
+        <div class="s-val" id="surge-streak-display">0</div>
+        <div class="s-lbl">Streak</div>
+      </div>
+      <div class="surge-stat multiplier">
+        <div class="s-val" id="surge-mult-display">×1</div>
+        <div class="s-lbl">Multiplier</div>
+      </div>
+      <div class="surge-stat winnings">
+        <div class="s-val" id="surge-winnings-display">£0</div>
+        <div class="s-lbl">Won</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SURGE COACH -->
+  <div id="surge-coach">
+    <span style="font-size:20px;">⚡</span>
+    <span id="surge-coach-text">Your Blackjack unlocked the Surge! Guess Higher or Lower to climb the multiplier ladder.</span>
+  </div>
+
+  <div class="surge-body">
+    <!-- LADDER -->
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.28);text-transform:uppercase;text-align:center;margin-bottom:9px;">Level Progress</div>
+      <div class="progress-ladder" id="progress-ladder"></div>
+    </div>
+
+    <!-- CARD ARENA -->
+    <div class="card-arena">
+      <div class="arena-label">Current Card</div>
+      <div class="arena-card-wrap">
+        <div class="card-glow" id="card-glow"></div>
+        <div class="arena-card face-down" id="surge-current-card">
+          <svg viewBox="0 0 80 32" width="60" height="24" xmlns="http://www.w3.org/2000/svg" style="margin:auto;">
+            <text x="2" y="22" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="22" fill="rgba(76,175,80,0.5)" letter-spacing="-1">888</text>
+          </svg>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="arena-label" style="margin-bottom:7px;">Will the next card be...</div>
+        <div class="streak-gems" id="surge-gems"></div>
+      </div>
+
+      <div class="choice-area">
+        <button class="btn-lower"   id="btn-lower"   onclick="surgeGuess('lower')">▼ Lower</button>
+        <button class="btn-cashout" id="btn-cashout"  onclick="surgeCashout()">
+          Cash Out<br>
+          <small id="cashout-amount" style="font-size:11px;letter-spacing:1px;opacity:0.75;">£0</small>
+        </button>
+        <button class="btn-higher"  id="btn-higher"  onclick="surgeGuess('higher')">▲ Higher</button>
+      </div>
+
+      <div id="surge-message" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:3px;color:rgba(255,255,255,0.35);height:20px;text-align:center;text-transform:uppercase;"></div>
+    </div>
+
+    <!-- PAYOUT TABLE -->
+    <div style="width:135px;flex-shrink:0;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.28);text-transform:uppercase;text-align:center;margin-bottom:9px;">Payout Table</div>
+      <div id="payout-table" style="display:flex;flex-direction:column;gap:5px;"></div>
+    </div>
+  </div>
+
+  <!-- SURGE RESULT -->
+  <div class="surge-result-overlay" id="surge-result-overlay">
+    <div class="surge-result-title" id="surge-result-title">SURGE!</div>
+    <div class="surge-result-win"   id="surge-result-win">+£0</div>
+    <div class="surge-result-detail" id="surge-result-detail"></div>
+    <div class="surge-result-coach" id="surge-result-coach"></div>
+    <button class="btn-next" style="margin-top:26px;" onclick="closeSurge()">Return to Blackjack ›</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+//  GAME STATE
+// ═══════════════════════════════════════
+let balance    = 1000;
+let totalWon   = 0;
+let currentBet = 0;
+let lastBet    = 0;   // for Rebet
+let winStreak  = 0;
+let xp         = 0;
+let xpLevel    = 1;
+let handsPlayed = 0;
+let achievementsUnlocked = new Set();
+
+// ─── DECK ───
+let deck = [];
+const SUITS = ['♠','♥','♦','♣'];
+const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+const RED_SUITS = new Set(['♥','♦']);
+
+function buildDeck(n=6) {
+  deck = [];
+  for (let d=0;d<n;d++) for (const s of SUITS) for (const r of RANKS) deck.push({rank:r,suit:s});
+  shuffle(deck);
+}
+
+function shuffle(arr) {
+  for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+}
+
+function drawCard() { if(deck.length<20) buildDeck(); return deck.pop(); }
+
+function cardValue(c) {
+  if(c.rank==='A') return 11;
+  if(['J','Q','K'].includes(c.rank)) return 10;
+  return parseInt(c.rank);
+}
+
+function numericValue(c) {
+  return {A:14,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,J:11,Q:12,K:13}[c.rank];
+}
+
+function handTotal(hand) {
+  let t = hand.reduce((s,c)=>s+cardValue(c),0);
+  let a = hand.filter(c=>c.rank==='A').length;
+  while(t>21&&a>0){t-=10;a--;}
+  return t;
+}
+
+// ═══════════════════════════════════════
+//  BLACKJACK STATE
+// ═══════════════════════════════════════
+let playerHands   = [[]];   // supports split: array of hands
+let dealerHand    = [];
+let activeHandIdx = 0;      // which split hand is active
+let isSplit       = false;
+let splitBets     = [0];    // per-split-hand bet
+let gamePhase     = 'betting';
+
+buildDeck();
+
+// ─── COACH MESSAGES ───
+const COACH_MSGS = {
+  welcome:      { icon:'🎓', text:'Welcome to <strong>21 Surge</strong> by 888 Casino. Place your bet and press Deal to start!' },
+  bet_placed:   { icon:'🪙', text:'Nice bet! Press <strong>Deal</strong> when ready, or keep adding chips to increase your stake.' },
+  can_rebet:    { icon:'↺',  text:'<strong>Rebet</strong> button is now active — instantly replicate your last bet to save time.' },
+  deal_start:   { icon:'🃏', text:'Cards are dealt! <strong>Hit</strong> to draw a card, <strong>Stand</strong> to hold, or <strong>Double</strong> to go big on a strong hand.' },
+  soft_17:      { icon:'💡', text:'You have a <strong>Soft 17</strong> — an Ace in your hand. You can safely Hit as the Ace can drop to 1 to protect you from busting.' },
+  good_hand:    { icon:'👍', text:'Strong hand! <strong>Standing</strong> here is solid strategy — dealer must hit to 17 and risks busting.' },
+  low_hand:     { icon:'🎯', text:'Low hand — <strong>Hit</strong> is the right move. You have room to improve without risking a bust.' },
+  can_split:    { icon:'🔀', text:'You have a <strong>pair!</strong> Press <strong>Split</strong> to play two hands and double your winning chances.' },
+  can_double:   { icon:'💰', text:'A 10 or 11 is prime <strong>Double Down</strong> territory — high chance of landing a 10-value card for 20 or 21!' },
+  blackjack:    { icon:'⚡', text:'<strong>BLACKJACK!</strong> You hit 21 — the Surge bonus game is now unlocked. Prepare to climb the multiplier ladder!' },
+  bust:         { icon:'💥', text:'You busted over 21. <strong>Tip:</strong> Stand on 17+ — the dealer will often bust trying to beat you.' },
+  win:          { icon:'🏆', text:'Well played! Keep building that <strong>win streak</strong> — at 3 wins you unlock a payout multiplier.' },
+  lose_dealer:  { icon:'😤', text:'Dealer wins this round. <strong>Basic strategy:</strong> always stand on 17+, hit on 12 vs dealer 2-6.' },
+  push:         { icon:'🤝', text:'Push — bet returned. With equal totals, no one loses. A good moment to try a <strong>Rebet</strong>!' },
+  streak_3:     { icon:'🔥', text:'3-win streak active! You now have a <strong>×1.25 payout multiplier</strong> on all wins. Keep it going!' },
+  streak_5:     { icon:'🌟', text:'5-win streak! <strong>×1.5 multiplier</strong> on all wins now. You\'re on fire — protect that streak!' },
+  split_win:    { icon:'🎉', text:'Split hand win! Playing pairs gives you <strong>two shots at beating the dealer</strong> — smart move!' },
+  rebet_tip:    { icon:'↺',  text:'<strong>Rebet & Deal</strong> placed your last bet instantly and dealt the cards — fastest way to keep the momentum!' },
+};
+
+function setCoach(key) {
+  const m = COACH_MSGS[key] || COACH_MSGS.welcome;
+  document.getElementById('coach-icon').textContent = m.icon;
+  document.getElementById('coach-text').innerHTML = m.text;
+}
+
+// Patch: add id to icon span in HTML
+document.getElementById('coach-banner').innerHTML =
+  '<span class="coach-icon" id="coach-icon">🎓</span>' +
+  '<span class="coach-text" id="coach-text">Welcome to <strong>21 Surge</strong> by 888 Casino. Place your bet to start — hit Blackjack to unlock the Surge bonus game!</span>';
+
+// ─── RENDER CARD ───
+function renderCard(card, faceDown=false) {
+  const el = document.createElement('div');
+  el.className = 'card' + (faceDown ? ' face-down' : (RED_SUITS.has(card.suit) ? ' red' : ' black'));
+  if (faceDown) {
+    el.innerHTML = `<div class="card-back-logo">
+      <svg viewBox="0 0 60 24" width="48" height="18" xmlns="http://www.w3.org/2000/svg">
+        <text x="2" y="18" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="18" fill="rgba(76,175,80,0.45)" letter-spacing="-1">888</text>
+      </svg>
+    </div>`;
+  } else {
+    el.innerHTML = `
+      <div class="rank-top">${card.rank}<br><small style="font-size:10px;">${card.suit}</small></div>
+      <div class="suit-center">${card.suit}</div>
+      <div class="rank-bottom">${card.rank}<br><small style="font-size:10px;">${card.suit}</small></div>`;
+  }
+  return el;
+}
+
+// ─── RENDER HANDS ───
+function renderHands(hideDealerSecond=true) {
+  // Dealer
+  const dh = document.getElementById('dealer-hand');
+  dh.innerHTML = '';
+  dealerHand.forEach((c,i) => dh.appendChild(renderCard(c, hideDealerSecond && i===1)));
+
+  const ds = document.getElementById('dealer-score');
+  if (!hideDealerSecond) {
+    const dt = handTotal(dealerHand);
+    ds.textContent = dt>0 ? dt : '';
+    ds.className = dt>21 ? 'bust' : '';
+  } else {
+    ds.textContent = dealerHand.length>0 ? cardValue(dealerHand[0]) : '';
+    ds.className = '';
+  }
+
+  // Player
+  const row = document.getElementById('hands-row');
+  row.innerHTML = '';
+
+  playerHands.forEach((hand, idx) => {
+    const container = document.createElement('div');
+    container.className = 'hand-container' + (isSplit && idx===activeHandIdx ? ' active-hand' : '');
+    container.id = 'hand-container-' + idx;
+
+    if (isSplit) {
+      const lbl = document.createElement('div');
+      lbl.className = 'split-label';
+      lbl.textContent = 'Hand ' + (idx+1);
+      container.appendChild(lbl);
+    }
+
+    const handEl = document.createElement('div');
+    handEl.className = 'hand';
+    handEl.id = 'player-hand-' + idx;
+    hand.forEach(c => handEl.appendChild(renderCard(c)));
+    container.appendChild(handEl);
+
+    const score = document.createElement('div');
+    score.className = 'score-badge';
+    const t = handTotal(hand);
+    const isBJ = t===21 && hand.length===2 && !isSplit;
+    score.innerHTML = `<span class="${t>21?'bust':isBJ?'blackjack':''}">${hand.length>0?t:''}</span>`;
+    container.appendChild(score);
+    row.appendChild(container);
+  });
+
+  // Legacy single score badge (hidden when split)
+  document.getElementById('player-score').textContent = '';
+}
+
+// ─── BET FUNCTIONS ───
+function addBet(amount) {
+  if (gamePhase !== 'betting') return;
+  if (balance < amount) { showToast('⚠️','Not Enough Chips','Add funds to keep playing',''); return; }
+  currentBet += amount;
+  balance -= amount;
+  updateDisplays();
+  setCoach('bet_placed');
+  document.getElementById('btn-deal').disabled = false;
+}
+
+function clearBet() {
+  if (gamePhase !== 'betting') return;
+  balance += currentBet;
+  currentBet = 0;
+  updateDisplays();
+  setCoach('welcome');
+}
+
+function reBet() {
+  if (gamePhase !== 'betting' || lastBet === 0) return;
+  if (balance < lastBet) { showToast('⚠️','Not Enough Chips',`Need £${lastBet} to rebet`,''); return; }
+  balance -= lastBet;
+  currentBet = lastBet;
+  updateDisplays();
+  setCoach('rebet_tip');
+  showToast('↺','Rebet Applied',`£${lastBet} placed — press Deal to go!`,'tip');
+}
+
+function reBetAndDeal() {
+  document.getElementById('result-overlay').classList.remove('show');
+  resetHandState();
+  if (lastBet > 0 && balance >= lastBet) {
+    balance -= lastBet;
+    currentBet = lastBet;
+    updateDisplays();
+    setTimeout(() => dealHand(), 100);
+  } else {
+    showToast('⚠️','Not Enough Chips',`Need £${lastBet} to rebet`,'');
+  }
+}
+
+function updateDisplays() {
+  document.getElementById('balance-display').textContent = '£' + balance.toLocaleString();
+  document.getElementById('bet-display').textContent = '£' + currentBet;
+  document.getElementById('total-won').textContent = '£' + totalWon.toLocaleString();
+  document.getElementById('btn-rebet').disabled = (lastBet === 0 || gamePhase !== 'betting');
+}
+
+// ─── DEAL ───
+function dealHand() {
+  if (currentBet === 0) { showToast('🪙','Place a Bet First','Select chips to start the hand',''); return; }
+  lastBet = currentBet;
+  gamePhase = 'playing';
+  isSplit = false;
+  activeHandIdx = 0;
+  playerHands = [[drawCard(), drawCard()]];
+  dealerHand = [drawCard(), drawCard()];
+  splitBets = [currentBet];
+  renderHands(true);
+  toggleButtons(true);
+  handsPlayed++;
+  unlockAchievement('first','🃏','First Hand','You played your first hand!');
+  addXP(10);
+
+  const hand = playerHands[0];
+  const total = handTotal(hand);
+  const isBJ  = total===21 && hand.length===2;
+  const canSplitNow = canSplit(hand);
+  const canDblNow   = (total===10||total===11) && balance>=currentBet;
+
+  if (isBJ) {
+    setCoach('blackjack');
+    setTimeout(() => resolveHand(), 600);
+    return;
+  }
+
+  if (canSplitNow)       setCoach('can_split');
+  else if (canDblNow)    setCoach('can_double');
+  else if (total>=17)    setCoach('good_hand');
+  else if (isSoft17(hand)) setCoach('soft_17');
+  else                   setCoach('deal_start');
+}
+
+function isSoft17(hand) {
+  return handTotal(hand)===17 && hand.some(c=>c.rank==='A');
+}
+
+function canSplit(hand) {
+  return hand.length===2 && cardValue(hand[0])===cardValue(hand[1]) && balance>=splitBets[activeHandIdx];
+}
+
+function toggleButtons(playing) {
+  document.getElementById('btn-deal').disabled   = playing;
+  document.getElementById('btn-clear').disabled  = playing;
+  document.getElementById('btn-rebet').disabled  = playing;
+  document.getElementById('btn-hit').disabled    = !playing;
+  document.getElementById('btn-stand').disabled  = !playing;
+
+  const hand    = playerHands[activeHandIdx] || [];
+  const total   = handTotal(hand);
+  const canDbl  = playing && hand.length===2 && balance>=splitBets[activeHandIdx];
+  const canSplt = playing && !isSplit && canSplit(hand);
+
+  document.getElementById('btn-double').disabled = !canDbl;
+  document.getElementById('btn-split').disabled  = !canSplt;
+}
+
+// ─── PLAYER ACTIONS ───
+function playerHit() {
+  playerHands[activeHandIdx].push(drawCard());
+  renderHands(true);
+  const total = handTotal(playerHands[activeHandIdx]);
+  document.getElementById('btn-double').disabled = true;
+  document.getElementById('btn-split').disabled  = true;
+
+  if (total > 21) {
+    if (isSplit && activeHandIdx === 0) {
+      // Move to second split hand
+      activeHandIdx = 1;
+      renderHands(true);
+      setCoach('deal_start');
+      toggleButtons(true);
+    } else {
+      resolveHand();
+    }
+  } else if (total === 21) {
+    setTimeout(() => {
+      if (isSplit && activeHandIdx === 0) { activeHandIdx=1; renderHands(true); toggleButtons(true); }
+      else resolveHand();
+    }, 400);
+  } else {
+    if (total>=17)          setCoach('good_hand');
+    else if (isSoft17(playerHands[activeHandIdx])) setCoach('soft_17');
+    else                    setCoach('low_hand');
+  }
+}
+
+function playerStand() {
+  if (isSplit && activeHandIdx === 0) {
+    activeHandIdx = 1;
+    renderHands(true);
+    setCoach('deal_start');
+    toggleButtons(true);
+  } else {
+    toggleButtons(false);
+    dealerPlay();
+  }
+}
+
+function playerDouble() {
+  if (balance < splitBets[activeHandIdx]) return;
+  balance -= splitBets[activeHandIdx];
+  splitBets[activeHandIdx] *= 2;
+  updateDisplays();
+  playerHands[activeHandIdx].push(drawCard());
+  renderHands(true);
+  const total = handTotal(playerHands[activeHandIdx]);
+  if (total > 21) resolveHand();
+  else setTimeout(() => {
+    if (isSplit && activeHandIdx===0) { activeHandIdx=1; renderHands(true); toggleButtons(true); }
+    else { toggleButtons(false); dealerPlay(); }
+  }, 400);
+}
+
+function playerSplit() {
+  const hand = playerHands[activeHandIdx];
+  if (!canSplit(hand)) return;
+  balance -= splitBets[activeHandIdx];
+  splitBets.push(splitBets[activeHandIdx]);
+  isSplit = true;
+  playerHands = [
+    [hand[0], drawCard()],
+    [hand[1], drawCard()]
+  ];
+  activeHandIdx = 0;
+  renderHands(true);
+  toggleButtons(true);
+  showToast('🔀','Hand Split!','Two separate hands in play — win with both for maximum payout!','tip');
+  setCoach('can_split');
+}
+
+// ─── DEALER ───
+function dealerPlay() {
+  renderHands(false);
+  const step = () => {
+    if (handTotal(dealerHand) < 17) {
+      dealerHand.push(drawCard());
+      renderHands(false);
+      setTimeout(step, 480);
+    } else { resolveHand(); }
+  };
+  setTimeout(step, 550);
+}
+
+// ─── RESOLVE ───
+function resolveHand() {
+  renderHands(false);
+  toggleButtons(false);
+  gamePhase = 'over';
+
+  const dtotal = handTotal(dealerHand);
+  let overallWin = false, overallPayout = 0, bestOutcome = 'lose', surgeTriggered = false;
+
+  let summaryLines = [];
+
+  playerHands.forEach((hand, idx) => {
+    const ptotal = handTotal(hand);
+    const pBJ  = ptotal===21 && hand.length===2 && !isSplit;
+    const dBJ  = dtotal===21 && dealerHand.length===2;
+    let outcome, payout=0;
+
+    if (ptotal > 21) {
+      outcome = 'lose'; payout = 0;
+    } else if (pBJ && !dBJ) {
+      outcome = 'surge'; payout = Math.floor(splitBets[idx]*2.5); surgeTriggered = true;
+    } else if (dtotal>21 || ptotal>dtotal) {
+      outcome = 'win';
+      payout = Math.round(splitBets[idx]*2*getStreakMultiplier());
+      overallWin = true;
+    } else if (ptotal===dtotal) {
+      outcome = 'push'; payout = splitBets[idx];
+    } else {
+      outcome = 'lose'; payout = 0;
+    }
+
+    balance += payout;
+    const gained = payout - splitBets[idx];
+    if (gained > 0) { totalWon += gained; addXP(gained>100?40:20); }
+
+    if (isSplit) summaryLines.push(`Hand ${idx+1}: ${outcome.toUpperCase()} (${ptotal})`);
+    if (outcome==='win'||outcome==='surge') { overallWin=true; if(!bestOutcome||bestOutcome==='lose') bestOutcome=outcome; }
+    else if (outcome==='push' && bestOutcome==='lose') bestOutcome='push';
+    else if (outcome==='lose') { /* keep */ }
+    overallPayout += payout;
+
+    // Split achievement
+    if (isSplit && (outcome==='win'||outcome==='surge'))
+      unlockAchievement('split','🔀','Split Decision','You won a split hand!');
+  });
+
+  if (!isSplit) bestOutcome = (() => {
+    const ptotal = handTotal(playerHands[0]);
+    const pBJ = ptotal===21 && playerHands[0].length===2;
+    const dBJ = dtotal===21 && dealerHand.length===2;
+    if (ptotal>21) return 'lose';
+    if (pBJ&&!dBJ) return 'surge';
+    if (dtotal>21||ptotal>dtotal) return 'win';
+    if (ptotal===dtotal) return 'push';
+    return 'lose';
+  })();
+
+  const netGain = overallPayout - splitBets.reduce((a,b)=>a+b,0);
+
+  // Streak logic
+  if (bestOutcome==='win'||bestOutcome==='surge') {
+    winStreak++;
+    if (winStreak===3) { unlockAchievement('streak3','🔥','On Fire','3 wins in a row!'); showToast('🔥','3-Win Streak!','×1.25 payout multiplier now active!','streak'); setCoach('streak_3'); }
+    if (winStreak===5) { showToast('🌟','5-Win Streak!','×1.5 multiplier unlocked — you\'re on fire!','streak'); setCoach('streak_5'); }
+  } else if (bestOutcome==='lose') {
+    winStreak = 0;
+  }
+
+  updateDisplays();
+  updateStreakDisplay();
+
+  // ─ Overlay ─
+  const overlay   = document.getElementById('result-overlay');
+  const titleEl   = document.getElementById('result-title');
+  const amountEl  = document.getElementById('result-amount');
+  const coachEl   = document.getElementById('result-coach');
+
+  let titleText, titleClass, amountText, amountClass, coachText;
+
+  if (bestOutcome==='surge') {
+    titleText='21 SURGE!'; titleClass='surge';
+    amountText=`+£${overallPayout - splitBets[0]}`; amountClass='green';
+    coachText='You hit Blackjack! Your winnings plus a Surge bonus await. Enter the bonus game to multiply them further!';
+  } else if (bestOutcome==='win') {
+    titleText=isSplit?'SPLIT WIN!':'WIN!'; titleClass='win';
+    amountText=netGain>0?`+£${Math.round(netGain)}`:''; amountClass='green';
+    coachText = winStreak>=3 ? `Win #${winStreak} in a row! Your streak multiplier is boosting every payout.` : 'Great hand! Keep building your streak for multiplier bonuses.';
+    if (!isSplit) setCoach('win');
+  } else if (bestOutcome==='push') {
+    titleText='PUSH'; titleClass='push';
+    amountText='Bet returned'; amountClass='';
+    coachText='Equal hands — your bet is returned. A Rebet & Deal is the fastest way to go again!';
+    setCoach('push');
+  } else {
+    titleText=isSplit?'SPLIT LOSS':'DEALER WINS'; titleClass='lose';
+    amountText=`-£${splitBets.reduce((a,b)=>a+b,0)}`; amountClass='red';
+    coachText='Dealer takes this one. Remember: stand on 17+, hit on 8 or less. Basic strategy wins long-term!';
+    if (handTotal(playerHands[0])>21) setCoach('bust'); else setCoach('lose_dealer');
+  }
+
+  if (isSplit) coachText = summaryLines.join(' · ') + '. ' + coachText;
+
+  titleEl.textContent = titleText;
+  titleEl.className = 'result-title ' + titleClass;
+  amountEl.textContent = amountText;
+  amountEl.className = 'result-amount ' + amountClass;
+  coachEl.textContent = coachText;
+
+  const rebetResultBtn = document.getElementById('btn-rebet-result');
+  rebetResultBtn.disabled = (lastBet===0||balance<lastBet);
+
+  if (bestOutcome==='surge') {
+    document.getElementById('btn-next').textContent = '⚡ Enter the Surge ›';
+    document.getElementById('btn-next').onclick = () => { overlay.classList.remove('show'); launchSurge(splitBets[0]); };
+  } else {
+    document.getElementById('btn-next').textContent = 'New Hand ›';
+    document.getElementById('btn-next').onclick = nextHand;
+  }
+
+  overlay.classList.add('show');
+}
+
+function getStreakMultiplier() {
+  if(winStreak>=5) return 1.5;
+  if(winStreak>=3) return 1.25;
+  return 1;
+}
+
+function updateStreakDisplay() {
+  document.getElementById('win-streak').textContent = winStreak;
+  document.getElementById('streak-mult').textContent = '×' + getStreakMultiplier();
+}
+
+function resetHandState() {
+  playerHands=[[]]; dealerHand=[]; activeHandIdx=0; isSplit=false; splitBets=[0]; gamePhase='betting';
+  renderHands(true);
+  document.getElementById('player-score').textContent='';
+  document.getElementById('dealer-score').textContent='';
+}
+
+function nextHand() {
+  document.getElementById('result-overlay').classList.remove('show');
+  currentBet=0;
+  resetHandState();
+  updateDisplays();
+  toggleButtons(false);
+  document.getElementById('btn-deal').disabled=false;
+  document.getElementById('btn-clear').disabled=false;
+  setCoach(lastBet>0?'can_rebet':'welcome');
+}
+
+// ─── XP & LEVELS ───
+function addXP(amount) {
+  xp += amount;
+  const needed = xpLevel*100;
+  if (xp>=needed) { xp-=needed; xpLevel++; showToast('⭐','Level Up!',`You reached Level ${xpLevel}!`,'achieve'); }
+  document.getElementById('xp-fill').style.width = Math.min((xp/(xpLevel*100))*100,100)+'%';
+  document.getElementById('xp-level').textContent='Lv '+xpLevel;
+}
+
+// ─── ACHIEVEMENTS ───
+function unlockAchievement(id,icon,name,desc) {
+  if(achievementsUnlocked.has(id)) return;
+  achievementsUnlocked.add(id);
+  const el=document.getElementById('ach-'+id);
+  if(el) el.classList.add('unlocked');
+  showToast(icon,name,desc,'achieve');
+  addXP(50);
+}
+
+// ─── TOASTS ───
+function showToast(icon,title,desc,type='') {
+  const c=document.getElementById('toast-container');
+  const t=document.createElement('div');
+  t.className=`toast ${type}`;
+  t.innerHTML=`<div class="toast-icon">${icon}</div><div class="toast-content"><h4>${title}</h4><p>${desc}</p></div>`;
+  c.appendChild(t);
+  setTimeout(()=>{ t.style.animation='toast-out 0.3s forwards'; setTimeout(()=>t.remove(),300); },3200);
+}
+
+// ─── SOCIAL TICKER ───
+const TICKER_EVENTS = [
+  { e:'🎉', t:'<span class="highlight">Sarah M.</span> hit Blackjack and entered the Surge — won <span class="highlight">£680!</span>' },
+  { e:'⚡', t:'<span class="highlight">TomK</span> reached <span class="highlight">MEGA level</span> in the Surge and cashed out ×8' },
+  { e:'🔥', t:'<span class="highlight">Alex_88</span> is on a <span class="highlight">7-game win streak!</span>' },
+  { e:'💰', t:'<span class="highlight">JadeP</span> split Aces and won <span class="highlight">both hands!</span>' },
+  { e:'🏆', t:'<span class="highlight">MikeR</span> unlocked <span class="highlight">Surge Master</span> achievement' },
+  { e:'🎰', t:'<span class="highlight">4,312 players</span> playing 21 Surge right now' },
+  { e:'⭐', t:'<span class="highlight">LuckyLou</span> levelled up to <span class="highlight">Level 14</span>' },
+  { e:'💎', t:'<span class="highlight">DanB</span> doubled down for <span class="highlight">£1,400!</span>' },
+  { e:'🃏', t:'<span class="highlight">MiaC</span> is on a <span class="highlight">5-win streak</span> with the ×1.5 multiplier' },
+  { e:'🔀', t:'<span class="highlight">BenW</span> split 8s and beat the dealer on <span class="highlight">both hands!</span>' },
+];
+
+(function buildTicker(){
+  const ticker=document.getElementById('ticker');
+  const all=[...TICKER_EVENTS,...TICKER_EVENTS];
+  ticker.innerHTML=all.map(e=>`<div class="ticker-item"><span>${e.e}</span><span>${e.t}</span></div>`).join('');
+})();
+
+// ═══════════════════════════════════════
+//  SURGE GAME
+// ═══════════════════════════════════════
+let surgeState = { baseBet:0, currentCard:null, streak:0, level:0, winnings:0, active:false };
+
+const SURGE_LEVELS = [
+  { label:'Starter', mult:1   },
+  { label:'Warm Up', mult:1.5 },
+  { label:'Heating', mult:2   },
+  { label:'Hot',     mult:2.5 },
+  { label:'Blazing', mult:3   },
+  { label:'SURGE',   mult:5   },
+  { label:'MEGA',    mult:8   },
+];
+
+const SURGE_COACH = [
+  'Guess <strong>Higher</strong> or <strong>Lower</strong>. Correct = climb the ladder. Wrong = Surge ends. Cash Out any time!',
+  'Warm Up reached! ×1.5 multiplier locked in. Keep going or <strong>Cash Out</strong> to bank it safely.',
+  '×2 multiplier — you\'re heating up! The risk increases, but so does the reward.',
+  'Hot level! ×2.5 multiplier. <strong>Statistically</strong>, low and high cards are more common than mid-range. Use that edge!',
+  '×3 — Blazing! If you cash out now you pocket <strong>triple your original bet</strong>.',
+  'You\'re in the SURGE zone! ×5 multiplier. Two more correct guesses for the legendary ×8 MEGA payout!',
+  '🏆 MEGA level — ×8 multiplier! This is the maximum. The bonus will auto-cash out — incredible run!',
+];
+
+const SURGE_WRONG_MSGS = [
+  'So close! Variance is part of the game — come back and hit another 21!',
+  'Unlucky! Remember: cash out early to protect smaller multipliers on future Surges.',
+  'That\'s the Surge! Risk and reward. Cash out sooner next time to secure a win.',
+];
+
+function setSurgeCoach(text) {
+  document.getElementById('surge-coach-text').innerHTML = text;
+}
+
+function launchSurge(bet) {
+  surgeState = { baseBet:bet, currentCard:drawCard(), streak:0, level:0, winnings:0, active:true };
+  buildParticles();
+  buildLadder();
+  buildPayoutTable();
+  buildGems();
+  renderSurgeCard(surgeState.currentCard);
+  updateSurgeStats();
+  setSurgeCoach(SURGE_COACH[0]);
+
+  document.getElementById('surge-result-overlay').classList.remove('show');
+  document.getElementById('surge-game').classList.add('active');
+  document.getElementById('btn-higher').disabled=false;
+  document.getElementById('btn-lower').disabled=false;
+  document.getElementById('btn-cashout').disabled=true;
+  document.getElementById('surge-message').textContent='';
+}
+
+function buildParticles() {
+  const c=document.getElementById('surge-particles');
+  c.innerHTML='';
+  const colors=['#00D4FF','#9B59FF','#FFD700','#FF6B00'];
+  for(let i=0;i<40;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const sz=4+Math.random()*8;
+    p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${4+Math.random()*6}s;animation-delay:${Math.random()*4}s;`;
+    c.appendChild(p);
+  }
+}
+
+function buildLadder() {
+  const el=document.getElementById('progress-ladder');
+  el.innerHTML='';
+  SURGE_LEVELS.forEach((lvl,i)=>{
+    const r=document.createElement('div');
+    r.className='ladder-rung'+(i===0?' current':'');
+    r.id='rung-'+i;
+    r.innerHTML=`<span class="rung-level">${lvl.label}</span><span class="rung-mult">×${lvl.mult}</span>`;
+    el.appendChild(r);
+  });
+}
+
+function buildPayoutTable() {
+  const el=document.getElementById('payout-table');
+  el.innerHTML=SURGE_LEVELS.map((lvl,i)=>`
+    <div class="payout-row${i===0?' current':''}" id="payout-row-${i}">
+      <span class="pr-label">${lvl.label}</span>
+      <span class="pr-mult">×${lvl.mult}</span>
+    </div>`).join('');
+}
+
+function buildGems() {
+  const el=document.getElementById('surge-gems');
+  el.innerHTML='';
+  for(let i=0;i<7;i++){
+    const g=document.createElement('div');
+    g.className='gem'; g.id='gem-'+i;
+    el.appendChild(g);
+  }
+}
+
+function updateLadder() {
+  SURGE_LEVELS.forEach((_,i)=>{
+    const r=document.getElementById('rung-'+i);
+    const p=document.getElementById('payout-row-'+i);
+    if(!r) return;
+    r.className='ladder-rung'+(i<surgeState.level?' completed':i===surgeState.level?' current':'');
+    if(p){
+      p.className='payout-row'+(i<surgeState.level?' done':i===surgeState.level?' current':'');
+    }
+  });
+  for(let i=0;i<7;i++){
+    const g=document.getElementById('gem-'+i);
+    if(g) i<surgeState.streak?g.classList.add('lit'):g.classList.remove('lit');
+  }
+}
+
+function renderSurgeCard(card) {
+  const el=document.getElementById('surge-current-card');
+  el.className='arena-card '+(RED_SUITS.has(card.suit)?'red':'black');
+  el.innerHTML=`
+    <div class="a-rank-top">${card.rank}<br><small style="font-size:14px;">${card.suit}</small></div>
+    <div class="a-suit">${card.suit}</div>
+    <div class="a-rank-bottom">${card.rank}<br><small style="font-size:14px;">${card.suit}</small></div>`;
+}
+
+function updateSurgeStats() {
+  const lvl=SURGE_LEVELS[Math.min(surgeState.level,SURGE_LEVELS.length-1)];
+  const cashout=Math.round(surgeState.baseBet*lvl.mult);
+  surgeState.winnings=cashout;
+  document.getElementById('surge-streak-display').textContent=surgeState.streak;
+  document.getElementById('surge-mult-display').textContent='×'+lvl.mult;
+  document.getElementById('surge-winnings-display').textContent='£'+cashout;
+  document.getElementById('cashout-amount').textContent='£'+cashout;
+  document.getElementById('btn-cashout').disabled=surgeState.level===0;
+  updateLadder();
+}
+
+function surgeGuess(guess) {
+  if(!surgeState.active) return;
+  document.getElementById('btn-higher').disabled=true;
+  document.getElementById('btn-lower').disabled=true;
+
+  const next=drawCard();
+  const cv=numericValue(surgeState.currentCard);
+  const nv=numericValue(next);
+  let correct=(guess==='higher'&&nv>cv)||(guess==='lower'&&nv<cv)||(nv===cv&&Math.random()>0.5);
+
+  const glow=document.getElementById('card-glow');
+  glow.className='card-glow';
+
+  setTimeout(()=>{
+    renderSurgeCard(next);
+    surgeState.currentCard=next;
+
+    if(correct){
+      glow.className='card-glow correct';
+      surgeState.streak++;
+      surgeState.level=Math.min(surgeState.streak,SURGE_LEVELS.length-1);
+      updateSurgeStats();
+      document.getElementById('surge-message').textContent='✓ Correct!';
+      showToast('⚡','Correct!',`Streak: ${surgeState.streak} · ×${SURGE_LEVELS[Math.min(surgeState.level,SURGE_LEVELS.length-1)].mult}`,'surge-win');
+
+      if(surgeState.level>=4) unlockAchievement('surge5','🏆','Surge Master','You reached Level 5 in the Surge!');
+
+      if(surgeState.level>=SURGE_LEVELS.length-1){
+        setTimeout(()=>surgeCashout(true),900);
+        return;
+      }
+
+      setSurgeCoach(SURGE_COACH[Math.min(surgeState.level,SURGE_COACH.length-1)]);
+
+      setTimeout(()=>{
+        glow.className='card-glow';
+        document.getElementById('btn-higher').disabled=false;
+        document.getElementById('btn-lower').disabled=false;
+        document.getElementById('surge-message').textContent='Higher or Lower?';
+      },750);
+    } else {
+      glow.className='card-glow wrong';
+      document.getElementById('surge-message').textContent='✗ Wrong — Surge ends';
+      setSurgeCoach(SURGE_WRONG_MSGS[Math.floor(Math.random()*SURGE_WRONG_MSGS.length)]);
+      setTimeout(()=>endSurge(false),1100);
+    }
+  },380);
+}
+
+function surgeCashout(maxed=false) {
+  if(surgeState.level===0&&!maxed) return;
+  endSurge(true,maxed);
+}
+
+function endSurge(won,maxed=false) {
+  surgeState.active=false;
+  const lvl=SURGE_LEVELS[Math.min(surgeState.level,SURGE_LEVELS.length-1)];
+  const winAmt=won?Math.round(surgeState.baseBet*lvl.mult):0;
+
+  if(won){
+    balance+=winAmt;
+    totalWon+=winAmt-surgeState.baseBet;
+    updateDisplays();
+    addXP(winAmt);
+  }
+
+  const overlay=document.getElementById('surge-result-overlay');
+  const titleEl=document.getElementById('surge-result-title');
+  const winEl=document.getElementById('surge-result-win');
+  const detailEl=document.getElementById('surge-result-detail');
+  const coachEl=document.getElementById('surge-result-coach');
+
+  if(won){
+    titleEl.textContent=maxed?'MAX SURGE!':'CASHED OUT!';
+    titleEl.className='surge-result-title win-title';
+    winEl.textContent='+£'+winAmt;
+    winEl.style.color='var(--green)';
+    detailEl.textContent=`×${lvl.mult} multiplier · ${surgeState.streak} streak · ${lvl.label} level`;
+    coachEl.textContent=maxed?'You climbed all the way to MEGA! The ultimate Surge achievement. Hit another 21 to do it again!':'Smart cash out! Banking your multiplier is just as skilful as climbing higher. Hit another 21 to keep going!';
+  } else {
+    titleEl.textContent='SURGE ENDED';
+    titleEl.className='surge-result-title bust-title';
+    winEl.textContent='No bonus';
+    winEl.style.color='var(--red)';
+    detailEl.textContent=`Reached ${lvl.label} · Streak of ${surgeState.streak}`;
+    coachEl.textContent='The Surge is risky — that\'s the thrill! Hit another 21 and consider cashing out earlier to lock in a win next time.';
+  }
+
+  overlay.classList.add('show');
+}
+
+function closeSurge() {
+  document.getElementById('surge-game').classList.remove('active');
+  nextHand();
+}
+
+// ─── INIT ───
+buildDeck();
+toggleButtons(false);
+document.getElementById('btn-deal').disabled=false;
+updateDisplays();
+updateStreakDisplay();
+</script>
+</body>
+</html>
